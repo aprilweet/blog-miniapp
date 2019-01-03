@@ -1,0 +1,7 @@
+<form bind:submit="onBindSubmit">
+  <view class="input-box">
+    <textarea class="input-box-textarea" name="textarea" focus="{{true}}" value="{{value}}" placeholder="{{placeholder}}" auto-height="{{true}}" fixed="{{true}}" show-confirm-bar="{{false}}" cursor-spacing="12px" bindinput="onBindInput" bindblur="onBindBlur"
+    />
+    <button class="input-box-button" form-type="submit" disabled="{{emptyInput}}" type="primary">发送</button>
+  </view>
+</form>

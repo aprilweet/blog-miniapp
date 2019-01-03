@@ -1,0 +1,79 @@
+<template name="rating">
+  <view class="rating">
+    <view wx:for="{{[1,2,3,4,5]}}" wx:key="*this" class="iconfont mm-rating {{index < stars ? 'star' : 'unstar'}}" />
+  </view>
+</template>
+
+<template name="book">
+  <view class="book">
+    <image class="left" src="{{book.img}}" mode="widthFix" />
+    <view class="right">
+      <view class="header">
+        <view class="header-icon iconfont mm-book" />
+        <view class="header-state"> {{date}} {{state}} </view>
+      </view>
+      <view class="body">
+        <view class="body-title"> {{book.title}} </view>
+        <view class="body-info"> {{book.pub}} </view>
+        <template is="rating" data="{{stars:rating}}" wx:if="{{rating}}" />
+        <view class="body-comment" wx:if="{{comment}}"> {{comment}} </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name="movie">
+  <view class="movie">
+    <image class="left" src="{{movie.img}}" mode="widthFix" />
+    <view class="right">
+      <view class="header">
+        <view class="header-icon iconfont mm-movie" />
+        <view class="header-state"> {{date}} {{state}} </view>
+      </view>
+      <view class="body">
+        <view class="body-title"> {{movie.title}} </view>
+        <view class="body-alias" wx:if="{{movie.alias}}">{{movie.alias}} </view>
+        <view class="body-info"> {{movie.intro}} </view>
+        <template is="rating" data="{{stars:rating}}" wx:if="{{rating}}" />
+        <view class="body-comment" wx:if="{{comment}}"> {{comment}} </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<view wx:for="{{timeline}}" wx:key="wxkey" hidden="{{!filter[index]}}" bind:touchstart="onTouchStart" bind:touchend="onTouchEnd" data-wxkey="{{item.wxkey}}">
+  <template is="{{item.type}}" data="{{...item.item}}" />
+</view>
+
+<view class="no-more" wx:if="{{all}}">
+  没有更多了
+</view>
+<button class="load-more" wx:else bind:tap="onReachBottom">
+  加载更多
+</button>
+
+<view class="filter">
+  <radio-group bind:change="onTypeChanged">
+    <label class="{{type=='all' ? 'radio-check' : 'radio-uncheck'}}">
+      <radio value="all" /> 全部
+    </label>
+    <label class="{{type=='book' ? 'radio-check' : 'radio-uncheck'}}">
+      <radio value="book" /> 图书
+    </label>
+    <label class="{{type=='movie' ? 'radio-check' : 'radio-uncheck'}}">
+      <radio value="movie" /> 影视
+    </label>
+  </radio-group>
+
+  <radio-group bind:change="onRatingChanged">
+    <label class="{{rating=='all' ? 'radio-check' : 'radio-uncheck'}}">
+      <radio value="all" /> 全部
+    </label>
+    <label class="{{rating=='rated' ? 'radio-check' : 'radio-uncheck'}}">
+      <radio value="rated" /> 评论
+    </label>
+    <label class="{{rating=='recommend' ? 'radio-check' : 'radio-uncheck'}}">
+      <radio value="recommend" /> 好评
+    </label>
+  </radio-group>
+</view>

@@ -1,0 +1,6 @@
+@import "/towxml/style/main.wxss";
+@import "/res/common.wxss";
+
+.article {
+  margin-bottom: 2em;
+}

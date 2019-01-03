@@ -1,0 +1,15 @@
+<view class="like-comment">
+  <view class="bar-row">
+    <view class="bar">
+      <view class="iconfont mm-zan {{liked? 'bar-like':'bar-unlike'}}" bind:tap="onLikeBindTap" />
+      <view class="bar-text" wx:if="{{liked}}">已赞</view>
+      <view class="bar-text" wx:else>赞一个</view>
+    </view>
+    <like-list id="like-list" target="{{target}}" bind:liked="onLikeLiked" />
+  </view>
+  <view class="bar bar-row">
+    <view class="iconfont mm-comment bar-comment" disabled="{{inComment}}" bind:tap="onCommentBindTap" />
+    <view class="bar-text">说一句</view>
+  </view>
+  <comment-list target="{{target}}" input="{{inComment}}" placeholder="说一句" bind:input="onCommentInput" />
+</view>

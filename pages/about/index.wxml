@@ -1,0 +1,11 @@
+<view class="me">
+  <swiper class="me-swiper" indicator-dots="{{true}}">
+    <swiper-item wx:for="{{me.images}}" wx:key="link">
+      <image class="me-swiper-image" mode="widthFix" src="{{item.link}}" />
+    </swiper-item>
+  </swiper>
+  <text class="me-introduction">
+    {{me.introduction}}
+  </text>
+</view>
+<like-comment target="{{target}}" />

@@ -1,0 +1,28 @@
+.me {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  margin-bottom: 2em;
+}
+
+swiper {
+  height: 375rpx;
+  border-radius: 16rpx;
+  /* 圆角所必须 */
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
+
+swiper-item image {
+  width: 100%;
+}
+
+.me-introduction {
+  font-size: medium;
+}
+
+@media (min-width: 768px) {
+  .me-introduction {
+    font-size: large;
+  }
+}

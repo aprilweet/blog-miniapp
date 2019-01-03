@@ -1,0 +1,175 @@
+@import "/res/iconfont.wxss";
+@import "/res/common.wxss";
+
+page {
+  padding-top: 2em;
+}
+
+.book, .movie {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.left {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  /* 防止加载过程中变形 */
+  height: 0;
+  border-radius: 2px;
+}
+
+.right {
+  margin-left: 1em;
+  flex-grow: 1;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: small;
+  color: #888;
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 0.5em;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.body-title {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.body-alias {
+  font-size: xx-small;
+  color: #aaa;
+}
+
+.body-info {
+  font-size: xx-small;
+  color: #aaa;
+  overflow: hidden;
+  line-height: 1.5em;
+  max-height: 4.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.body-comment {
+  font-size: medium;
+  line-height: 1.5em;
+  color: #4d4d4d;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #f1f1f1;
+  padding: 1rpx 5%;
+  font-size: small;
+  font-weight: bold;
+  height: 2em;
+}
+
+.filter radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  width: 30%;
+  min-width: 120px;
+  margin-right: 5%;
+}
+
+.filter label {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rpx;
+}
+
+.filter radio-group:first-child label:first-child {
+  border-top-left-radius: 0.4em;
+  border-bottom-left-radius: 0.4em;
+}
+
+.filter radio-group:last-child label:last-child {
+  border-top-right-radius: 0.4em;
+  border-bottom-right-radius: 0.4em;
+}
+
+.filter radio {
+  display: none;
+}
+
+.radio-check {
+  background-color: #1aad19;
+  color: #f8f8f8;
+}
+
+.radio-uncheck {
+  background-color: #f8f8f8;
+  color: #1aad19;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.star {
+  color: #ffbe00;
+}
+
+.unstar {
+  color: #aaa;
+}
+
+@media (min-width: 768px) {
+  .left {
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+    height: 0;
+    border-radius: 4px;
+  }
+
+  .header {
+    font-size: medium;
+  }
+
+  .body-title {
+    font-size: large;
+  }
+
+  .body-alias, .body-info {
+    font-size: x-small;
+  }
+
+  .body-comment {
+    font-size: large;
+  }
+
+  .filter {
+    font-size: medium;
+  }
+}

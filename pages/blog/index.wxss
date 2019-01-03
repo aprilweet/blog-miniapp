@@ -1,0 +1,25 @@
+@import "/towxml/style/main.wxss";
+@import "/res/common.wxss";
+
+.article {
+  background-color: #f8f8f8;
+  padding: 1em;
+  margin-bottom: 2em;
+  border-radius: 0.5em;
+}
+
+.article-body {
+  color: #4d4d4d;
+  line-height: 1.5em;
+}
+
+.article-footer {
+  color: #ea6853;
+  font-size: x-small;
+}
+
+@media (min-width: 768px) {
+  .article-footer {
+    font-size: small;
+  }
+}

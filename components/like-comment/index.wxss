@@ -1,0 +1,70 @@
+@import "/res/iconfont.wxss";
+
+.like-comment {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.bar-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1em;
+}
+
+like-list {
+  margin-left: 10px;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 40px;
+  max-width: 40px;
+}
+
+.bar-like, .bar-unlike, .bar-comment {
+  font-size: x-large;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.bar-like {
+  color: #ea6853;
+}
+
+.bar-unlike {
+  color: #888;
+}
+
+.bar-comment {
+  color: #1aad19;
+}
+
+.bar-text {
+  color: #aaa;
+  font-size: xx-small;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .bar {
+    min-width: 64px;
+    max-width: 64px;
+  }
+
+  .bar-like, .bar-unlike, .bar-comment {
+    font-size: xx-large;
+  }
+
+  .bar-text {
+    font-size: x-small;
+  }
+}

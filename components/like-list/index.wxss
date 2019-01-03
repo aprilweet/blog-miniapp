@@ -1,0 +1,30 @@
+scroll-view {
+  white-space: nowrap;
+}
+
+.like-list-avatar {
+  display: inline-block;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-right: 2px;
+}
+
+.like-list-more {
+  display: inline-block;
+  width: 3em;
+  text-align: center;
+  font-size: x-small;
+  color: #1aad19;
+}
+
+@media (min-width: 768px) {
+  .like-list-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .like-list-more {
+    font-size: small;
+  }
+}

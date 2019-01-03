@@ -1,0 +1,27 @@
+<import src="/towxml/entry.wxml" />
+
+<view class="article">
+  <view class="article-title">
+    {{article.title}}
+  </view>
+
+  <view class="article-header">
+    <view class="article-header-author">
+      <view wx:if="{{article.author}}">
+        {{article.author}}
+      </view>
+      <view wx:else>
+        {{article.user.nickName}}
+      </view>
+    </view>
+    <view class="article-header-createTime">
+      {{article.createTime}}
+    </view>
+  </view>
+
+  <view class="article-body">
+    <template is="entry" data="{{...article.body}}" />
+  </view>
+</view>
+
+<like-comment target="{{target}}" />

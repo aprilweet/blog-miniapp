@@ -1,0 +1,27 @@
+<template name="comment">
+  <view class="comment">
+    <image class="left" src="{{user.avatarUrl}}" mode="widthFix" />
+    <view class="right">
+      <view class="comment-header">
+        <view class="comment-header-name">
+          {{user.nickName}}
+        </view>
+        <view class="comment-header-time">{{createTime}}</view>
+      </view>
+      <text class="comment-body"> {{body}} </text>
+    </view>
+  </view>
+</template>
+
+<view class="comment-list">
+  <view wx:for="{{comments}}" wx:key="commentID" bind:longpress="onBindLongPress" data-comment="{{item}}">
+    <template is="comment" data="{{...item}}" />
+  </view>
+  <view class="no-more" wx:if="{{all}}">
+    没有更多了
+  </view>
+  <button class="load-more" wx:else bind:tap="onBindTap">
+    加载更多
+  </button>
+  <input-box wx:if="{{input}}" placeholder="{{placeholder}}" value="{{inputValue}}" bind:blur="onBindBlur" bind:confirm="onBindConfirm" />
+</view>
