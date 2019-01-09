@@ -56,8 +56,8 @@ like-list {
 
 @media (min-width: 768px) {
   .bar {
-    min-width: 64px;
-    max-width: 64px;
+    min-width: 55px;
+    max-width: 55px;
   }
 
   .bar-like, .bar-unlike, .bar-comment {

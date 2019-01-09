@@ -9,4 +9,11 @@ page {
   width: 100%;
   min-height: 100%;
   padding: 5%;
+  font-size: medium;
+}
+
+@media (min-width: 768px) {
+  page {
+    font-size: large;
+  } 
 }

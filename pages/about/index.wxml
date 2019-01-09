@@ -4,8 +4,6 @@
       <image class="me-swiper-image" mode="widthFix" src="{{item.link}}" />
     </swiper-item>
   </swiper>
-  <text class="me-introduction">
-    {{me.introduction}}
-  </text>
+  <text class="me-introduction"> {{me.introduction}} </text>
 </view>
 <like-comment target="{{target}}" />

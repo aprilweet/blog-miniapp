@@ -1,34 +1,22 @@
 <import src="/towxml/entry.wxml" />
 
 <view class="article" wx:for="{{articles}}" wx:for-item="article" wx:key="articleID" bind:tap="onBindTap" data-article-id="{{article.articleID}}">
-  <view class="article-title">
-    {{article.title}}
-  </view>
+  <view class="article-title"> {{article.title}} </view>
 
   <view class="article-header">
     <view class="article-header-author">
-      <view wx:if="{{article.author}}">
-        {{article.author}}
-      </view>
-      <view wx:else>
-        {{article.user.nickName}}
-      </view>
+      <block wx:if="{{article.author}}"> {{article.author}} </block>
+      <block wx:else> {{article.user.nickName}} </block>
     </view>
-    <view class="article-header-createTime">
-      {{article.createTime}}
-    </view>
+    <view class="article-header-createTime"> {{article.createTime}} </view>
   </view>
 
   <view class="article-body">
     <template is="entry" data="{{...article.abstract}}" />
   </view>
 
-  <view class="article-footer">点击阅读全文</view>
+  <view class="article-footer"> 点击阅读全文 </view>
 </view>
 
-<view class="no-more" wx:if="{{all}}">
-  没有更多了
-</view>
-<button class="load-more" wx:else bind:tap="onReachBottom">
-  加载更多
-</button>
+<view class="no-more" wx:if="{{all}}"> 没有更多了 </view>
+<button class="load-more" wx:else bind:tap="onReachBottom"> 加载更多 </button>

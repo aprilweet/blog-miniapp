@@ -8,9 +8,8 @@
 
 swiper {
   height: 375rpx;
-  border-radius: 16rpx;
-  /* 圆角所必须 */
-  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+  border-radius: 5px;
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%); /* 圆角所必须 */
 }
 
 swiper-item image {
