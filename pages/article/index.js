@@ -1,5 +1,6 @@
 const SERVER = require("../../utils/server.js");
 const UTIL = require("../../utils/util.js");
+const ANALYTICS = require("../../utils/analytics.js");
 
 const Towxml = require('../../towxml/main');
 const towxml = new Towxml();
@@ -11,7 +12,11 @@ Page({
    */
   data: {
     article: null,
-    target: null
+    wxml: null,
+    prev: null,
+    next: null,
+    target: null,
+    interact: false
   },
 
   articleID: null,
@@ -31,59 +36,18 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title: this.data.article ? this.data.article.title : "文章"
+    };
   },
 
   loadArticle: function() {
     wx.showLoading({
       title: "正在加载",
-      mask: true
-    })
+    });
 
     const _this = this;
     SERVER.getArticle({
@@ -92,17 +56,44 @@ Page({
       body: true
     }, {
       success: function(res) {
-        let article = res.data.data.article;
-        article.createTime = UTIL.printDateTime(article.createTime);
-        if (article.bodyFormat == "html" || article.bodyFormat == "markdown")
-          article.body = towxml.toJson(article.body, article.bodyFormat);
+        let article = res.data.article;
+        wx.setNavigationBarTitle({
+          title: article.title
+        });
 
+        article.createTime = UTIL.printDateTime(article.createTime);
+
+        let wxml = null;
+        if (article.body) {
+          if (article.bodyFormat == "html" || article.bodyFormat == "markdown") {
+            wxml = towxml.toJson(article.body, article.bodyFormat);
+            // 真机不支持音乐？
+            wxml = towxml.initData(wxml, {
+              app: _this
+            });
+            wxml.theme = "light";
+            UTIL.initToWxml(_this);
+          }
+        }
         _this.setData({
-          article: article
+          article: article,
+          wxml: wxml,
+          prev: res.data.prev,
+          next: res.data.next,
+          interact: !getApp().data.readOnly
+        });
+
+        ANALYTICS.report("open_article", {
+          "user_id": getApp().data.user.userID,
+          "article_id": article.articleID,
+          "article_title": article.title
         });
       },
       fail: function(res) {
-
+        wx.showToast({
+          title: "加载文章失败",
+          icon: "none"
+        });
       },
       complete: function(res) {
         console.debug(res);

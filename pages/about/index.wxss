@@ -1,15 +1,16 @@
+@import "/res/common.wxss";
+
 .me {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  margin-bottom: 2em;
 }
 
 swiper {
   height: 375rpx;
-  border-radius: 5px;
-  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%); /* 圆角所必须 */
+  border-radius: 0.5em;
+  overflow: hidden;
 }
 
 swiper-item image {
@@ -18,10 +19,138 @@ swiper-item image {
 
 .me-introduction {
   font-size: medium;
+  color: #4d4d4d;
+  line-height: 1.8em;
+  padding: 0 10px;
+}
+
+.tucao {
+  line-height: 4em;
+  font-size: small;
+  color: #aaa;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: medium;
+  font-weight: bold;
+  color: #4d4d4d;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+/* links */
+
+.me-links {
+  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  overflow: hidden;
+  background-color: #f8f8f8;
+}
+
+.link:not(:last-child) {
+  border-bottom: 1px #f1f1f1 solid;
+}
+
+.link-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.link-title-image {
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
+  box-shadow: 0 0 30rpx -5rpx #aaa;
+  border-radius: 50%;
+}
+
+.link-title-info {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.link-title-text {
+  font-size: small;
+  color: #2782d7;
+}
+
+.link-title-nav {
+  font-size: x-small;
+  color: #aaa;
+  line-height: 2em;
+  overflow-x: scroll;
+}
+
+.link-body {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.link-body-code {
+  min-width: 120px;
+  max-width: 120px;
+  height: 120px;
+  margin-right: 1em;
+}
+
+.link-body-description {
+  line-height: 1.8em;
+  font-size: small;
+  color: #4d4d4d;
 }
 
 @media (min-width: 768px) {
   .me-introduction {
     font-size: large;
+  }
+
+  .title {
+    font-size: large;
+  }
+
+  .tucao {
+    font-size: medium;
+  }
+
+  .link-title-image {
+    min-width: 70px;
+    max-width: 70px;
+    height: 70px;
+  }
+
+  .link-title-text {
+    font-size: medium;
+  }
+
+  .link-title-nav {
+    font-size: small;
+  }
+
+  .link-body-code {
+    min-width: 150px;
+    max-width: 150px;
+    height: 150px;
+  }
+
+  .link-body-description {
+    font-size: medium;
   }
 }

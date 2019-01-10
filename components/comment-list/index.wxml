@@ -15,7 +15,6 @@
   <view wx:for="{{comments}}" wx:key="commentID" bind:longpress="onBindLongPress" data-comment="{{item}}">
     <template is="comment" data="{{...item}}" />
   </view>
-  <view class="no-more" wx:if="{{all}}"> 没有更多了 </view>
-  <button class="load-more" wx:else bind:tap="onBindTap"> 加载更多 </button>
+  <view class="comment-list-more" wx:if="{{!all}}" bind:tap="onBindTap"> 更多评论 </view>
   <input-box wx:if="{{input}}" placeholder="{{placeholder}}" value="{{inputValue}}" bind:blur="onBindBlur" bind:confirm="onBindConfirm" />
 </view>

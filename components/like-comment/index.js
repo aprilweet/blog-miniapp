@@ -1,6 +1,7 @@
 const SERVER = require("../../utils/server.js");
 const CONFIG = require("../../config.js");
 const UTIL = require("../../utils/util.js");
+const ANALYTICS = require("../../utils/analytics.js");
 
 Component({
   /**
@@ -28,7 +29,56 @@ Component({
       });
     },
 
-    onLikeBindTap: function() {
+    onCommentInput: function(evt) {
+      this.setData({
+        inComment: evt.detail.value
+      });
+    },
+
+    onGetUserInfo: function(e) {
+      console.debug(e.detail);
+      if (e.detail.errMsg.indexOf("ok") != -1) {
+        if (!getApp().data.userUpdated) {
+          let userInfo = e.detail.userInfo;
+          this.updateUser(userInfo);
+        }
+        if (e.target.id == "like")
+          this.like();
+        else if (e.target.id == "comment")
+          this.comment();
+        else
+          console.error("Invalid target:", e.target.id);
+      } else {
+        wx.showToast({
+          title: "公开信息哈，请放心授权",
+          icon: "none",
+          duration: 2000
+        });
+
+        ANALYTICS.report("reject_auth", {
+          "user_id": getApp().data.user.userID,
+          "target": this.properties.target.target,
+          "target_id": this.properties.target.targetID
+        });
+      }
+    },
+
+    updateUser: function(userInfo) {
+      SERVER.updateUser({
+        nickName: userInfo.nickName,
+        avatarUrl: userInfo.avatarUrl,
+        gender: userInfo.gender
+      }, {
+        success: function(res) {
+          getApp().data.userUpdated = true;
+        },
+        complete: function(res) {
+          console.debug(res);
+        }
+      });
+    },
+
+    like: function() {
       let likeList = this.selectComponent("#like-list");
       if (this.data.liked)
         likeList.deleteLike();
@@ -36,15 +86,9 @@ Component({
         likeList.addLike();
     },
 
-    onCommentBindTap: function() {
+    comment: function() {
       this.setData({
         inComment: true
-      });
-    },
-
-    onCommentInput: function(evt) {
-      this.setData({
-        inComment: evt.detail.value
       });
     }
   }

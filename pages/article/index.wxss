@@ -1,6 +1,90 @@
 @import "/towxml/style/main.wxss";
+@import "/towxml/style/theme/light.wxss";
 @import "/res/common.wxss";
+@import "/res/iconfont.wxss";
 
 .article {
   margin-bottom: 2em;
+}
+
+.article-header {
+  color: #888;
+  line-height: 2em;
+}
+
+.article-body {
+  padding: 1em 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.article-classtags {
+  padding: 0.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.article-class {
+  margin-right: 3em;
+  font-size: small;
+  color: #ea6853;
+}
+
+.article-tag {
+  margin-right: 0.5em;
+  font-size: small;
+  color: #2ba245;
+}
+
+.footer {
+  margin: 2em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  font-size: small;
+}
+
+.footer-no-more {
+  padding: 0.5em;
+  color: #aaa;
+}
+
+.footer-item {
+  margin: 0.8em 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+.footer-item-tip {
+  padding: 10px;
+  white-space: nowrap;
+  background-color: #888;
+  color: #f8f8f8;
+}
+
+.footer-item-title {
+  flex-grow: 1;
+  padding: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  color: #4d4d4d;
+}
+
+@media (min-width: 768px) {
+  .article-class, .article-tag {
+    font-size: medium;
+  }
+
+  .footer {
+    font-size: medium;
+  }
 }

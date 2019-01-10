@@ -6,7 +6,7 @@ page {
 }
 
 .book, .movie {
-  margin-top: 2em;
+  padding: 1.5em 0;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -17,8 +17,7 @@ page {
   width: 100px;
   min-width: 100px;
   max-width: 100px;
-  /* 防止加载过程中变形 */
-  height: 0;
+  height: 0; /* 防止加载过程中变形 */
   border-radius: 2px;
 }
 
@@ -34,7 +33,7 @@ page {
   justify-content: space-between;
   font-size: small;
   color: #888;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 0.5em;
 }
 
@@ -106,16 +105,17 @@ radio-group {
   align-items: center;
   justify-content: center;
   margin-right: 1px;
+  transition: background-color 1s, color 1s;
 }
 
 radio-group:first-child label:first-child {
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
 }
 
 radio-group:last-child label:last-child {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }
 
 .filter radio {

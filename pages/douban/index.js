@@ -8,24 +8,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-    timeline: null,
-    all: null,
+    timeline: [],
+    all: false,
+    loading: false,
     type: "all",
     rating: "all",
-    filter: null
+    filter: []
   },
 
-  loading: false,
   page: 0,
 
-  typeFilter: null,
-  ratingFilter: null,
+  typeFilter: [],
+  ratingFilter: [],
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     this.loadTimeline(false);
+  },
+
+  onBindLongPress: function(evt) {
+    let url = evt.currentTarget.dataset.url;
+    if (url) {
+      wx.setClipboardData({
+        data: url,
+        success: function(res) {
+          wx.showToast({
+            title: "链接已复制到剪贴板，请在浏览器中打开",
+            icon: "none"
+          });
+        }
+      });
+    }
   },
 
   onTypeChanged: function(evt) {
@@ -35,7 +50,7 @@ Page({
       filter: this.getFilter(this.typeFilter, this.ratingFilter)
     });
     let shown = this.data.filter.filter(v => v);
-    if (shown.length < CONFIG.timelinePageSize)
+    if (shown.length < 5)
       this.loadTimeline(true);
   },
 
@@ -46,53 +61,16 @@ Page({
       filter: this.getFilter(this.typeFilter, this.ratingFilter)
     });
     let shown = this.data.filter.filter(v => v);
-    if (shown.length < CONFIG.timelinePageSize)
+    if (shown.length < 5)
       this.loadTimeline(true);
   },
 
-  onTouchStart: function(evt) {
-    let wxkey = evt.currentTarget.dataset.wxkey;
-
-  },
-
-  onTouchEnd: function(evt) {
-    let wxkey = evt.currentTarget.dataset.wxkey;
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    if (this.loading)
+    if (this.data.loading)
       return;
     this.loadTimeline(false);
   },
@@ -101,7 +79,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    if (this.data.all || this.loading)
+    if (this.data.all || this.data.loading)
       return;
     this.loadTimeline(true);
   },
@@ -110,7 +88,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title: "豆瓣"
+    };
   },
 
   getTypeFilter: function(type, timeline) {
@@ -140,12 +120,12 @@ Page({
     let page = 1;
     if (more)
       page = this.page + 1;
+    else
+      wx.showLoading({
+        title: "正在加载",
+      });
 
-    wx.showLoading({
-      title: "正在加载",
-      mask: true
-    })
-    this.loading = true;
+    this.data.loading = true;
 
     const _this = this;
     SERVER.getTimeline({
@@ -153,10 +133,17 @@ Page({
       pageSize: CONFIG.timelinePageSize,
     }, {
       success(res) {
-        let timeline = res.data.data.timeline;
+        let timeline = res.data.timeline;
         let typeFilter = _this.getTypeFilter(_this.data.type, timeline);
         let ratingFilter = _this.getRatingFilter(_this.data.rating, timeline);
         let filter = _this.getFilter(typeFilter, ratingFilter);
+
+        let shown = filter.filter(v => v);
+        if (shown.length == 0) {
+          wx.nextTick(() => {
+            _this.onReachBottom();
+          });
+        }
 
         for (let item of timeline) {
           item.item.date = UTIL.printDate(item.item.date);
@@ -175,7 +162,7 @@ Page({
           filter = _this.data.filter.concat(filter);
         }
 
-        let total = res.data.data.total;
+        let total = res.data.total;
         let all = (timeline.length >= total);
 
         _this.setData({
@@ -203,15 +190,19 @@ Page({
         }
       },
       fail(res) {
-
+        wx.showToast({
+          title: "加载豆瓣失败",
+          icon: "none"
+        });
       },
       complete(res) {
         console.debug(res);
-        _this.loading = false;
-        wx.hideLoading();
+        _this.data.loading = false;
 
-        if (!more)
+        if (!more) {
+          wx.hideLoading();
           wx.stopPullDownRefresh();
+        }
       }
     });
   }

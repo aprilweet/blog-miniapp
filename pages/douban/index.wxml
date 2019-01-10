@@ -5,8 +5,8 @@
 </template>
 
 <template name="book">
-  <view class="book">
-    <image class="left" src="{{book.img}}" mode="widthFix" />
+  <navigator class="book" open-type="navigate" url="{{book.link}}" hover-start-time="500" bind:longpress="onBindLongPress" data-url="{{book.link}}">
+    <image class="left" src="{{book.img}}" mode="widthFix" lazy-load="{{true}}" />
     <view class="right">
       <view class="header">
         <view class="header-icon iconfont mm-book" />
@@ -19,12 +19,12 @@
         <view class="body-comment" wx:if="{{comment}}"> {{comment}} </view>
       </view>
     </view>
-  </view>
+  </navigator>
 </template>
 
 <template name="movie">
-  <view class="movie">
-    <image class="left" src="{{movie.img}}" mode="widthFix" />
+  <navigator class="movie" open-type="navigate" url="{{movie.link}}" hover-start-time="350" bind:longpress="onBindLongPress" data-url="{{movie.link}}">
+    <image class="left" src="{{movie.img}}" mode="widthFix" lazy-load="{{true}}" />
     <view class="right">
       <view class="header">
         <view class="header-icon iconfont mm-movie" />
@@ -38,11 +38,16 @@
         <view class="body-comment" wx:if="{{comment}}"> {{comment}} </view>
       </view>
     </view>
-  </view>
+  </navigator>
 </template>
 
-<view wx:for="{{timeline}}" wx:key="wxkey" hidden="{{!filter[index]}}" bind:touchstart="onTouchStart" bind:touchend="onTouchEnd" data-wxkey="{{item.wxkey}}">
-  <template is="{{item.type}}" data="{{...item.item}}" />
+<block wx:for="{{timeline}}" wx:key="wxkey">
+  <block wx:if="{{filter[index]}}">
+    <template is="{{item.type}}" data="{{...item.item}}" />
+  </block>
+</block>
+
+<view class="spacer">
 </view>
 
 <view class="no-more" wx:if="{{all}}"> 没有更多了 </view>
@@ -55,10 +60,10 @@
         <radio value="all" /> 全部
       </label>
       <label class="{{type=='book' ? 'radio-check' : 'radio-uncheck'}}">
-        <radio value="book" /> 图书
+        <radio value="book" /> 读书
       </label>
       <label class="{{type=='movie' ? 'radio-check' : 'radio-uncheck'}}">
-        <radio value="movie" /> 影视
+        <radio value="movie" /> 电影
       </label>
     </view>
   </radio-group>

@@ -1,21 +1,25 @@
 <import src="/towxml/entry.wxml" />
 
-<view class="article" wx:for="{{articles}}" wx:for-item="article" wx:key="articleID" bind:tap="onBindTap" data-article-id="{{article.articleID}}">
-  <view class="article-title"> {{article.title}} </view>
+<block wx:for="{{articles}}" wx:for-item="article" wx:key="articleID">
+  <navigator class="article" open-type="navigate" url="{{'/pages/article/index?articleID=' + article.articleID}}" hover-start-time="350">
+    <view class="article-title"> {{article.title}} </view>
 
-  <view class="article-header">
-    <view class="article-header-author">
-      <block wx:if="{{article.author}}"> {{article.author}} </block>
-      <block wx:else> {{article.user.nickName}} </block>
+    <view class="article-header">
+      <view class="article-header-author">
+        <block wx:if="{{article.author}}"> {{article.author}} </block>
+        <block wx:else> {{article.user.nickName}} </block>
+      </view>
+      <view class="article-header-createTime"> {{article.createTime}} </view>
     </view>
-    <view class="article-header-createTime"> {{article.createTime}} </view>
-  </view>
 
-  <view class="article-body">
-    <template is="entry" data="{{...article.abstract}}" />
-  </view>
+    <view wx:if="{{wxml[index]}}" class="article-body">
+      <template is="entry" data="{{...wxml[index]}}" />
+    </view>
 
-  <view class="article-footer"> 点击阅读全文 </view>
+  </navigator>
+</block>
+
+<view class="spacer">
 </view>
 
 <view class="no-more" wx:if="{{all}}"> 没有更多了 </view>

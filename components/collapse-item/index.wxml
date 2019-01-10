@@ -1,0 +1,9 @@
+<view class="collapse-item">
+  <view class="title" bind:tap="onBindTap">
+    <slot name="title" />
+    <view class="iconfont mm-arrow {{collapsed ? 'tip-right' : 'tip-down'}}" />
+  </view>
+  <view class="body" hidden="{{collapsed}}">
+    <slot name="body" />
+  </view>
+</view>

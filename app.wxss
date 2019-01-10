@@ -6,6 +6,7 @@ page {
   overflow-y: scroll;
   box-sizing: border-box;
   background-color: #f1f1f1;
+  color: black;
   width: 100%;
   min-height: 100%;
   padding: 5%;
@@ -15,5 +16,5 @@ page {
 @media (min-width: 768px) {
   page {
     font-size: large;
-  } 
+  }
 }

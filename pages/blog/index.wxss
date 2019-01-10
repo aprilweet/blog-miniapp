@@ -1,25 +1,18 @@
 @import "/towxml/style/main.wxss";
+@import "/towxml/style/theme/light.wxss";
 @import "/res/common.wxss";
 
 .article {
-  background-color: #f8f8f8;
-  padding: 1em;
-  margin-bottom: 2em;
-  border-radius: 0.5em;
+  padding: 1.5em 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.article-header {
+  margin-top: 1em;
+  color: #888;
 }
 
 .article-body {
+  margin-top: 1em;
   color: #4d4d4d;
-  line-height: 1.5em;
-}
-
-.article-footer {
-  color: #ea6853;
-  font-size: x-small;
-}
-
-@media (min-width: 768px) {
-  .article-footer {
-    font-size: small;
-  }
 }

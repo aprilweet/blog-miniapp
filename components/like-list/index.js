@@ -61,20 +61,20 @@ Component({
         mine: !more
       }, {
         success: function(res) {
-          let likes = res.data.data.likes;
+          let likes = res.data.likes;
           for (let like of likes)
             like.createTime = UTIL.printDateTime(like.createTime);
 
           if (more)
-            likes = _this.data.likes.concat(res.data.data.likes);
+            likes = _this.data.likes.concat(res.data.likes);
           else {
-            _this.data.mine = res.data.data.mine;
+            _this.data.mine = res.data.mine;
             _this.triggerEvent("liked", {
               value: _this.data.mine != null
             }, {});
           }
 
-          let total = res.data.data.total;
+          let total = res.data.total;
           let all = (likes.length >= total);
 
           _this.setData({
@@ -90,7 +90,10 @@ Component({
           }
         },
         fail: function(res) {
-
+          wx.showToast({
+            title: "加载赞失败",
+            icon: "none"
+          });
         },
         complete: function(res) {
           console.debug(res);
@@ -111,14 +114,15 @@ Component({
       }, {
         success: function(res) {
           wx.showToast({
-            title: "谢谢\u{1F604}",
+            title: "谢谢",
             icon: "success"
           });
           _this.loadLikes(false);
         },
         fail: function(res) {
           wx.showToast({
-            title: "点赞失败了\u{1F644}"
+            title: "点赞失败了\u{1F644}",
+            icon: "none"
           });
         },
         complete: function(res) {
@@ -139,14 +143,15 @@ Component({
       }, {
         success: function(res) {
           wx.showToast({
-            title: "取消点赞",
+            title: "取消点赞成功",
             icon: "success"
           });
           _this.loadLikes(false);
         },
         fail: function(res) {
           wx.showToast({
-            title: "取消点赞失败了\u{1F644}"
+            title: "取消点赞失败了\u{1F644}",
+            icon: "none"
           });
         },
         complete: function(res) {

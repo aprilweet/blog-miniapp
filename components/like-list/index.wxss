@@ -1,13 +1,16 @@
 scroll-view {
   white-space: nowrap;
+  height: 40px;
 }
 
 .like-list-avatar {
   display: inline-block;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  margin-right: 2px;
+  margin-right: 8px;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  height: 40px;
+  border-radius: 4px;
 }
 
 .like-list-more {
@@ -19,9 +22,17 @@ scroll-view {
 }
 
 @media (min-width: 768px) {
+  scroll-view {
+    height: 50px;
+  }
+
   .like-list-avatar {
-    width: 45px;
-    height: 45px;
+    margin-right: 10px;
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    height: 50px;
+    border-radius: 5px;
   }
 
   .like-list-more {

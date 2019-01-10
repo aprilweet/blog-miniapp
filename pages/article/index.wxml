@@ -1,8 +1,6 @@
 <import src="/towxml/entry.wxml" />
 
 <view class="article">
-  <view class="article-title"> {{article.title}} </view>
-
   <view class="article-header">
     <view class="article-header-author">
       <view wx:if="{{article.author}}"> {{article.author}} </view>
@@ -11,9 +9,32 @@
     <view class="article-header-createTime"> {{article.createTime}} </view>
   </view>
 
-  <view class="article-body">
-    <template is="entry" data="{{...article.body}}" />
+  <view wx:if="{{wxml}}" class="article-body">
+    <template is="entry" data="{{...wxml}}" />
+  </view>
+
+  <view class="article-classtags">
+    <view class="article-class iconfont mm-class" wx:if="{{article.classification}}"> {{article.classification}} </view>
+    <view class="article-tag iconfont mm-tag" wx:for="{{article.tags}}" wx:key="*this"> {{item}} </view>
   </view>
 </view>
 
-<like-comment target="{{target}}" />
+<block wx:if="{{interact}}">
+  <like-comment target="{{target}}" />
+</block>
+
+<block wx:if="{{article}}">
+  <view class="footer">
+    <navigator wx:if="{{next}}" class="footer-item" open-type="redirect" url="{{'/pages/article/index?articleID=' + next.articleID}}">
+      <view class="footer-item-tip">更新一篇</view>
+      <view class="footer-item-title"> {{next.title}} </view>
+    </navigator>
+    <view wx:else class="footer-no-more"> 没有更新的文章了 </view>
+
+    <navigator wx:if="{{prev}}" class="footer-item" open-type="redirect" url="{{'/pages/article/index?articleID=' + prev.articleID}}">
+      <view class="footer-item-tip">更早一篇</view>
+      <view class="footer-item-title"> {{prev.title}} </view>
+    </navigator>
+    <view wx:else class="footer-no-more"> 没有更早的文章了 </view>
+  </view>
+</block>

@@ -7,6 +7,6 @@ module.exports = {
 
   articlePageSize: 7,
   likePageSize: 15,
-  commentPageSize: 20,
-  timelinePageSize: 50,
+  commentPageSize: 15,
+  timelinePageSize: 40
 }

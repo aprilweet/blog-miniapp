@@ -1,0 +1,6 @@
+<view class="info"> 哎呀，故障了 </view>
+<navigator class="tucao" target="miniProgram" open-type="navigate" app-id="{{tc.appId}}" extra-data="{{tc.extraData}}" version="release">
+  我要吐个槽
+</navigator>
+<view class="reload" bind:tap="onReload"> 重新启动 </view>
+<view class="exit"> 点击右上角圆点，退出小程序 </view>

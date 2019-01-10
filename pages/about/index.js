@@ -1,4 +1,5 @@
 const SERVER = require("../../utils/server.js");
+const UTIL = require("../../utils/util.js");
 
 Page({
 
@@ -9,7 +10,9 @@ Page({
     me: null,
     target: {
       target: "system"
-    }
+    },
+    interact: false,
+    tc: {}
   },
 
   /**
@@ -20,58 +23,38 @@ Page({
     SERVER.aboutMe({}, {
       success: function(res) {
         _this.setData({
-          me: res.data.data
+          me: res.data,
+          interact: !getApp().data.readOnly
         });
       },
       fail: function(res) {
-
+        wx.showToast({
+          title: "加载资料失败",
+          icon: "none"
+        });
       },
       complete: function(res) {
         console.debug(res);
       }
     });
+    this.setData({
+      tc: UTIL.getTucaoData()
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
+  onCatchTap: function(evt) {
+    let url = evt.currentTarget.dataset.url;
+    if (url) {
+      wx.setClipboardData({
+        data: url,
+        success: function(res) {
+          wx.showToast({
+            title: "链接已复制到剪贴板，请在浏览器中打开",
+            icon: "none"
+          });
+        }
+      });
+    }
   },
 
   /**

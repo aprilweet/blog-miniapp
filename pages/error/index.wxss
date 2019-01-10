@@ -1,0 +1,38 @@
+page {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.info {
+  font-size: 200%;
+  color: #888;
+  flex-grow: 1;
+  margin-top: 3em;
+}
+
+.tucao, .reload {
+  width: 50%;
+  height: 2.5em;
+  border-radius: 0.5em;
+  border: 1px #1aad19 solid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.tucao {
+  background-color: #1aad19;
+  color: #f1f1f1;
+}
+
+.reload {
+  background-color: #f1f1f1;
+  color: #1aad19;
+}
+
+.exit {
+  line-height: 2em;
+  color: #aaa;
+}

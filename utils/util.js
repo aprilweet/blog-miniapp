@@ -1,8 +1,17 @@
-module.exports.printDateTime = function(stamp, simple = false) {
+module.exports.printDateTime = function(stamp, seconds = false, simple = false) {
+  var first, second;
+
   if (simple)
-    return formatTime(stamp * 1000, "Y/M/D h:m:s");
+    first = "Y/M/D";
   else
-    return formatTime(stamp * 1000, "Y年M月D日 h:m:s");
+    first = "Y年M月D日";
+
+  if (seconds)
+    second = "h:m:s";
+  else
+    second = "h:m";
+
+  return formatTime(stamp * 1000, `${first} ${second}`);
 }
 
 module.exports.printDate = function(stamp, simple = false) {
@@ -10,24 +19,6 @@ module.exports.printDate = function(stamp, simple = false) {
     return formatTime(stamp * 1000, "Y/M/D");
   else
     return formatTime(stamp * 1000, "Y年M月D日");
-}
-
-module.exports.parseUrl = function(url) {
-  var obj = {};
-  var mark = url.indexOf("?");
-  if (mark == -1) {
-    obj.url = url;
-  } else {
-    obj.url = url.substring(0, mark);
-    var paraString = url.substring(mark + 1, url.length).split("&");
-    for (var i in paraString) {
-      let keyvalue = paraString[i].split("=");
-      let key = keyvalue[0];
-      let value = keyvalue[1];
-      obj.params[key] = value;
-    }
-  }
-  return obj;
 }
 
 /**
@@ -57,4 +48,48 @@ function formatTime(val, format) {
     format = format.replace(formateArr[i], returnArr[i]);
   }
   return format;
+}
+
+module.exports.initToWxml = function(page) {
+  page["event_bind_tap"] = function(evt) {
+    let elem = evt.target.dataset._el;
+    if (elem.tag == "navigator") {
+      let url = elem.attr.href;
+      if (url) {
+        wx.setClipboardData({
+          data: url,
+          success: function(res) {
+            wx.showToast({
+              title: "链接已复制到剪贴板，请在浏览器中打开",
+              icon: "none"
+            });
+          }
+        });
+      }
+    }
+  };
+}
+
+module.exports.getTucaoData = function() {
+  let data = null;
+  try {
+    const res = wx.getSystemInfoSync();
+    const version = getApp().data.version;
+    data = {
+      "os": `${res.brand} ${res.model} ${res.system}`,
+      "clientVersion": `${res.version} ${res.SDKVersion} ${version}`,
+      "clientInfo": JSON.stringify(res)
+    };
+
+  } catch (e) {
+    console.error(e);
+  }
+
+  return {
+    appId: "wx8abaf00ee8c3202e",
+    extraData: {
+      id: 53232,
+      customData: data
+    }
+  }
 }

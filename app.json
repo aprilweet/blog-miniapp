@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/blog/index",
     "pages/article/index",
     "pages/douban/index",
-    "pages/about/index"
+    "pages/about/index",
+    "pages/error/index"
   ],
   "window": {
     "navigationBarTitleText": "迷迷蒙蒙明明灭灭",
@@ -44,10 +44,15 @@
     "input-box": "components/input-box/index",
     "like-list": "components/like-list/index",
     "comment-list": "components/comment-list/index",
-    "like-comment": "components/like-comment/index"
+    "like-comment": "components/like-comment/index",
+    "collapse": "components/collapse/index",
+    "collapse-item": "components/collapse-item/index"
   },
   "networkTimeout": {
     "request": 3000,
     "connectSocket": 3000
-  }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx8abaf00ee8c3202e"
+  ]
 }

@@ -75,7 +75,7 @@ Component({
       }, {
         success: function() {
           wx.showToast({
-            title: "谢谢\u{1F604}",
+            title: "谢谢",
             icon: "success"
           });
           let oldVal = _this.data.input;
@@ -92,11 +92,12 @@ Component({
         },
         fail: function() {
           wx.showToast({
-            title: "评论失败了\u{1F644}"
+            title: "评论失败了\u{1F644}",
+            icon: "none"
           });
         },
         complete: function(res) {
-          console.log(res);
+          console.debug(res);
         }
       });
     },
@@ -123,18 +124,19 @@ Component({
               }, {
                 success: function() {
                   wx.showToast({
-                    title: "删除评论",
+                    title: "删除评论成功",
                     icon: "success"
                   });
                   _this.loadComments(false);
                 },
                 fail: function() {
                   wx.showToast({
-                    title: "删除评论失败了\u{1F644}"
+                    title: "删除评论失败了\u{1F644}",
+                    icon: "none"
                   });
                 },
                 complete: function(res) {
-                  console.log(res);
+                  console.debug(res);
                 }
               });
               break;
@@ -143,7 +145,7 @@ Component({
           }
         },
         fail(res) {
-
+          console.error(res);
         }
       });
     },
@@ -162,14 +164,14 @@ Component({
         pageSize: CONFIG.commentPageSize
       }, {
         success: function(res) {
-          let comments = res.data.data.comments;
+          let comments = res.data.comments;
           for (let comment of comments)
             comment.createTime = UTIL.printDateTime(comment.createTime);
 
           if (more)
-            comments = _this.data.comments.concat(res.data.data.comments);
+            comments = _this.data.comments.concat(res.data.comments);
 
-          let total = res.data.data.total;
+          let total = res.data.total;
           let all = (comments.length >= total);
 
           _this.setData({
@@ -185,7 +187,10 @@ Component({
           }
         },
         fail: function(res) {
-
+          wx.showToast({
+            title: "加载评论失败",
+            icon: "none"
+          });
         },
         complete: function(res) {
           console.debug(res);

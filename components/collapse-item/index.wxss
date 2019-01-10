@@ -1,0 +1,25 @@
+@import "/res/iconfont.wxss";
+
+.collapse-item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tip-right, .tip-down {
+  color: #ccc;
+  padding: 0 1em;
+  transition: transform 0.5s ease-out;
+}
+
+.tip-down {
+  transform: rotate(90deg);
+}

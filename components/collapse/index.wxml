@@ -1,0 +1,3 @@
+<view bind:collapsed="onBindCollapsed">
+  <slot/>
+</view>
