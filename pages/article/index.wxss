@@ -14,8 +14,8 @@
 
 .article-body {
   padding: 1em 0;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 .article-classtags {
@@ -36,6 +36,18 @@
   margin-right: 0.5em;
   font-size: small;
   color: #2ba245;
+}
+
+.control {
+  align-self: center;
+}
+
+.control-visible {
+  color: #1aad19;
+}
+
+.control-invisible {
+  color: #aaa;
 }
 
 .footer {

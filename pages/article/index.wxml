@@ -1,6 +1,6 @@
 <import src="/towxml/entry.wxml" />
 
-<view class="article">
+<view class="article" wx:if="{{article}}">
   <view class="article-header">
     <view class="article-header-author">
       <view wx:if="{{article.author}}"> {{article.author}} </view>
@@ -9,7 +9,7 @@
     <view class="article-header-createTime"> {{article.createTime}} </view>
   </view>
 
-  <view wx:if="{{wxml}}" class="article-body">
+  <view class="article-body">
     <template is="entry" data="{{...wxml}}" />
   </view>
 
@@ -38,3 +38,7 @@
     <view wx:else class="footer-no-more"> 没有更早的文章了 </view>
   </view>
 </block>
+
+<view class="control" wx:if="{{control}}">
+  <switch class="{{visible ? 'control-visible' : 'control-invisible'}}" checked="{{visible}}" bind:change="onBindChange"> 文章{{visible ? '可见' : '隐藏'}} </switch>
+</view>

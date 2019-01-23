@@ -1,5 +1,5 @@
-<view class="me">
-  <swiper class="me-swiper" indicator-dots="{{true}}">
+<view class="me" wx:if="{{me}}">
+  <swiper class="me-swiper" wx:if="{{me.images}}" indicator-dots="{{true}}">
     <swiper-item wx:for="{{me.images}}" wx:key="link">
       <image class="me-swiper-image" mode="widthFix" src="{{item.link}}" />
     </swiper-item>

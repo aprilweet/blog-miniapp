@@ -73,7 +73,7 @@ Component({
         userID: getApp().data.user.userID,
         body: evt.detail.value
       }, {
-        success: function() {
+        success() {
           wx.showToast({
             title: "谢谢",
             icon: "success"
@@ -90,14 +90,14 @@ Component({
           }
           _this.loadComments(false);
         },
-        fail: function() {
+        fail() {
           wx.showToast({
             title: "评论失败了\u{1F644}",
             icon: "none"
           });
         },
-        complete: function(res) {
-          console.debug(res);
+        complete(res) {
+          console.debug("AddComment", res);
         }
       });
     },
@@ -122,21 +122,21 @@ Component({
               SERVER.deleteComment({
                 commentID: comment.commentID
               }, {
-                success: function() {
+                success() {
                   wx.showToast({
                     title: "删除评论成功",
                     icon: "success"
                   });
                   _this.loadComments(false);
                 },
-                fail: function() {
+                fail() {
                   wx.showToast({
                     title: "删除评论失败了\u{1F644}",
                     icon: "none"
                   });
                 },
-                complete: function(res) {
-                  console.debug(res);
+                complete(res) {
+                  console.debug("DeleteComment", res);
                 }
               });
               break;
@@ -163,7 +163,7 @@ Component({
         page: page,
         pageSize: CONFIG.commentPageSize
       }, {
-        success: function(res) {
+        success(res) {
           let comments = res.data.comments;
           for (let comment of comments)
             comment.createTime = UTIL.printDateTime(comment.createTime);
@@ -186,14 +186,14 @@ Component({
             console.error(comments, total);
           }
         },
-        fail: function(res) {
+        fail(res) {
           wx.showToast({
             title: "加载评论失败",
             icon: "none"
           });
         },
-        complete: function(res) {
-          console.debug(res);
+        complete(res) {
+          console.debug("GetLatestComments", res);
           _this.data.loading = false;
         }
       })

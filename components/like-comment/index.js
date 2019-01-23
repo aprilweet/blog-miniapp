@@ -36,7 +36,6 @@ Component({
     },
 
     onGetUserInfo: function(e) {
-      console.debug(e.detail);
       if (e.detail.errMsg.indexOf("ok") != -1) {
         if (!getApp().data.userUpdated) {
           let userInfo = e.detail.userInfo;
@@ -69,11 +68,11 @@ Component({
         avatarUrl: userInfo.avatarUrl,
         gender: userInfo.gender
       }, {
-        success: function(res) {
+        success(res) {
           getApp().data.userUpdated = true;
         },
-        complete: function(res) {
-          console.debug(res);
+        complete(res) {
+          console.debug("UpdateUser", res);
         }
       });
     },

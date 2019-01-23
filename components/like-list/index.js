@@ -60,7 +60,7 @@ Component({
         pageSize: CONFIG.likePageSize,
         mine: !more
       }, {
-        success: function(res) {
+        success(res) {
           let likes = res.data.likes;
           for (let like of likes)
             like.createTime = UTIL.printDateTime(like.createTime);
@@ -89,14 +89,14 @@ Component({
             console.error(likes, total);
           }
         },
-        fail: function(res) {
+        fail(res) {
           wx.showToast({
             title: "加载赞失败",
             icon: "none"
           });
         },
-        complete: function(res) {
-          console.debug(res);
+        complete(res) {
+          console.debug("GetLatestLikes", res);
           _this.data.loading = false;
         }
       })
@@ -112,22 +112,22 @@ Component({
         ...this.properties.target,
         userID: getApp().data.user.userID,
       }, {
-        success: function(res) {
+        success(res) {
           wx.showToast({
             title: "谢谢",
             icon: "success"
           });
           _this.loadLikes(false);
         },
-        fail: function(res) {
+        fail(res) {
           wx.showToast({
             title: "点赞失败了\u{1F644}",
             icon: "none"
           });
         },
-        complete: function(res) {
+        complete(res) {
           _this.data.changing = false;
-          console.debug(res);
+          console.debug("AddLike", res);
         }
       });
     },
@@ -141,22 +141,22 @@ Component({
       SERVER.deleteLike({
         likeID: this.data.mine.likeID
       }, {
-        success: function(res) {
+        success(res) {
           wx.showToast({
             title: "取消点赞成功",
             icon: "success"
           });
           _this.loadLikes(false);
         },
-        fail: function(res) {
+        fail(res) {
           wx.showToast({
             title: "取消点赞失败了\u{1F644}",
             icon: "none"
           });
         },
-        complete: function(res) {
+        complete(res) {
           _this.data.changing = false;
-          console.debug(res);
+          console.debug("DeleteLike", res);
         }
       });
     }

@@ -5,7 +5,7 @@
 </template>
 
 <template name="book">
-  <navigator class="book" open-type="navigate" url="{{book.link}}" hover-start-time="500" bind:longpress="onBindLongPress" data-url="{{book.link}}">
+  <navigator class="book" hover-class="none" open-type="navigate" url="{{book.link}}" bind:longpress="onBindLongPress" data-url="{{book.link}}">
     <image class="left" src="{{book.img}}" mode="widthFix" lazy-load="{{true}}" />
     <view class="right">
       <view class="header">
@@ -23,7 +23,7 @@
 </template>
 
 <template name="movie">
-  <navigator class="movie" open-type="navigate" url="{{movie.link}}" hover-start-time="350" bind:longpress="onBindLongPress" data-url="{{movie.link}}">
+  <navigator class="movie" hover-class="none" open-type="navigate" url="{{movie.link}}" bind:longpress="onBindLongPress" data-url="{{movie.link}}">
     <image class="left" src="{{movie.img}}" mode="widthFix" lazy-load="{{true}}" />
     <view class="right">
       <view class="header">

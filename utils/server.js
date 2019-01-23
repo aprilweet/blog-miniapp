@@ -18,6 +18,7 @@ module.exports = {
   getLatestArticles: factory("GetLatestArticles"),
   getLatestComments: factory("GetLatestComments"),
   getLatestLikes: factory("GetLatestLikes"),
+  manageArticle: factory("ManageArticle"),
   addComment: factory("AddComment"),
   modifyComment: factory("ModifyComment"),
   deleteComment: factory("DeleteComment"),
@@ -34,13 +35,13 @@ function factory(api) {
     let header = {};
     wx.getStorage({
       key: "Cookie",
-      success: function(res) {
+      success(res) {
         header["Cookie"] = res.data;
       },
-      fail: function(res) {
+      fail(res) {
         console.error("getStorage Cookie failed");
       },
-      complete: function() {
+      complete() {
         if (!getApp().data.user && api != "Login") {
           //先Login获取必要全局信息
           let task = {
@@ -81,13 +82,13 @@ function factory(api) {
           };
 
           let callback = {
-            success: function(res) {
+            success(res) {
               let setCookie = res.header["Set-Cookie"];
               if (setCookie)
                 wx.setStorage({
                   key: "Cookie",
                   data: setCookie,
-                  complete: function() {
+                  complete() {
                     success(res);
                   }
                 });
@@ -113,10 +114,10 @@ function factory(api) {
 
 function _check(task) {
   wx.checkSession({
-    success: function() {
+    success() {
       _login(task);
     },
-    fail: function() {
+    fail() {
       _start(task);
     }
   });
@@ -125,17 +126,17 @@ function _check(task) {
 function _start(task) {
   wx.login({
     timeout: CONFIG.networkTimeout,
-    success: function(res) {
+    success(res) {
       _login(task, res.code);
     },
-    fail: function(res) {
+    fail(res) {
       if (task.cb.fail)
         task.cb.fail(res);
       if (task.cb.complete)
         task.cb.complete(res);
     },
-    complete: function(res) {
-      console.debug(res);
+    complete(res) {
+      console.debug("wx.login", res);
     }
   });
 }
@@ -153,7 +154,7 @@ function _login(task, code) {
     cb = task.cb;
   else
     cb = {
-      success: function(res) {
+      success(res) {
         getApp().data.user = {
           userID: res.data.userID,
           admin: res.data.admin
@@ -161,14 +162,14 @@ function _login(task, code) {
         getApp().data.readOnly = res.data.readOnly;
         factory(task.api)(task.args, task.cb);
       },
-      fail: function(res) {
+      fail(res) {
         if (task.cb.fail)
           task.cb.fail(res);
         if (task.cb.complete)
           task.cb.complete(res);
       },
-      complete: function(res) {
-        console.debug(res);
+      complete(res) {
+        console.debug("Login", res);
       }
     };
 

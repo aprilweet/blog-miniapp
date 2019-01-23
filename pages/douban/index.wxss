@@ -33,7 +33,7 @@ page {
   justify-content: space-between;
   font-size: small;
   color: #888;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
   margin-bottom: 0.5em;
 }
 
@@ -105,7 +105,8 @@ radio-group {
   align-items: center;
   justify-content: center;
   margin-right: 1px;
-  transition: background-color 1s, color 1s;
+  color: #1aad19;
+  transition: background-color 0.8s;
 }
 
 radio-group:first-child label:first-child {
@@ -123,13 +124,11 @@ radio-group:last-child label:last-child {
 }
 
 .radio-check {
-  background-color: #1aad19;
-  color: #f8f8f8;
+  background-color: #f1f1f1;
 }
 
 .radio-uncheck {
-  background-color: #f8f8f8;
-  color: #1aad19;
+  background-color: white;
 }
 
 .rating {

@@ -3,7 +3,7 @@
     <slot name="title" />
     <view class="iconfont mm-arrow {{collapsed ? 'tip-right' : 'tip-down'}}" />
   </view>
-  <view class="body" hidden="{{collapsed}}">
+  <view class="body {{collapsed ? 'body-collapsed' : 'body-expanded'}}">
     <slot name="body" />
   </view>
 </view>

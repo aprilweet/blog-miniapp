@@ -1,7 +1,7 @@
 App({
   data: {
     device: null,
-    version: "1.0.0",
+    version: "1.1.0",
     user: null,
     readOnly: true,
     userUpdated: false
@@ -10,8 +10,7 @@ App({
   onLaunch: function() {
     const _this = this;
     wx.getSystemInfo({
-      success: function(res) {
-        console.info(res);
+      success(res) {
         _this.data.device = `${res.brand} ${res.model} ${res.system}`;
       }
     });

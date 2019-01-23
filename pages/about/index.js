@@ -21,20 +21,20 @@ Page({
   onLoad: function(options) {
     const _this = this;
     SERVER.aboutMe({}, {
-      success: function(res) {
+      success(res) {
         _this.setData({
           me: res.data,
           interact: !getApp().data.readOnly
         });
       },
-      fail: function(res) {
+      fail(res) {
         wx.showToast({
           title: "加载资料失败",
           icon: "none"
         });
       },
-      complete: function(res) {
-        console.debug(res);
+      complete(res) {
+        console.debug("AboutMe", res);
       }
     });
     this.setData({
@@ -47,7 +47,7 @@ Page({
     if (url) {
       wx.setClipboardData({
         data: url,
-        success: function(res) {
+        success(res) {
           wx.showToast({
             title: "链接已复制到剪贴板，请在浏览器中打开",
             icon: "none"

@@ -58,7 +58,7 @@ module.exports.initToWxml = function(page) {
       if (url) {
         wx.setClipboardData({
           data: url,
-          success: function(res) {
+          success(res) {
             wx.showToast({
               title: "链接已复制到剪贴板，请在浏览器中打开",
               icon: "none"

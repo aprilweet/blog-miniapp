@@ -6,7 +6,7 @@ module.exports.report = function(event, data) {
     event,
     data
   }, {
-    complete: function(res) {
+    complete(res) {
       console.debug("ReportAnalytics", res);
     }
   });

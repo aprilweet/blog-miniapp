@@ -108,7 +108,7 @@ Page({
         });
       },
       complete(res) {
-        console.debug(res);
+        console.debug("GetLatestArticles", res);
         _this.data.loading = false;
 
         if (!more) {

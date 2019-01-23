@@ -10,7 +10,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-bottom: 1em;
+  margin-bottom: 0.8em;
 }
 
 .left {
@@ -62,10 +62,6 @@
 }
 
 @media (min-width: 768px) {
-  .comment {
-    margin-bottom: 15px;
-  }
-
   .left {
     width: 50px;
     min-width: 50px;

@@ -1,7 +1,7 @@
 <import src="/towxml/entry.wxml" />
 
 <block wx:for="{{articles}}" wx:for-item="article" wx:key="articleID">
-  <navigator class="article" open-type="navigate" url="{{'/pages/article/index?articleID=' + article.articleID}}" hover-start-time="350">
+  <navigator class="article" hover-class="none" open-type="navigate" url="{{'/pages/article/index?articleID=' + article.articleID}}">
     <view class="article-title"> {{article.title}} </view>
 
     <view class="article-header">

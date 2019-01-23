@@ -9,6 +9,7 @@
   justify-content: center;
   padding: 4px 5%;
   background-color: #f8f8f8;
+  z-index: 1;
 }
 
 .input-box-textarea {
@@ -23,6 +24,7 @@
 .input-box-button {
   font-size: medium;
   white-space: nowrap;
+  width: 5em;
 }
 
 @media (min-width: 768px) {

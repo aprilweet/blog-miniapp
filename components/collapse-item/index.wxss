@@ -23,3 +23,16 @@
 .tip-down {
   transform: rotate(90deg);
 }
+
+.body {
+  transition: height 0.5s;
+  overflow: hidden;
+}
+
+.body-collapsed {
+  height: 0;
+}
+
+.body-expanded {
+  height: 9em;
+}
