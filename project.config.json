@@ -9,16 +9,30 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"coverView": true,
+		"autoAudits": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.5.1",
+	"libVersion": "2.9.4",
 	"appid": "wxdce76b2788188f37",
 	"projectname": "mm",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"cloudfunctionRoot": "tcb/",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"miniprogramRoot": "src/",
 	"condition": {
 		"search": {
 			"current": -1,

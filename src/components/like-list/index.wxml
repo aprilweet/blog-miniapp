@@ -1,0 +1,6 @@
+<view class="like-list">
+  <scroll-view scroll-x bind:scrolltolower="onBindScrollToLower">
+    <image class="like-list-avatar" wx:for="{{likes}}" wx:key="likeID" src="{{item.user.avatar.fileID}}" mode="widthFix" />
+    <view class="like-list-more" wx:if="{{!all}}" bind:tap="onBindTap"> 更多 </view>
+  </scroll-view>
+</view>

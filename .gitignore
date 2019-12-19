@@ -10,5 +10,10 @@ $RECYCLE.BIN/
 .TemporaryItems
 .Trashes
 
+# cloud
+cloudfunctionTemplate/
+
 # Node.js
+package-lock.json
 node_modules/
+typings/
