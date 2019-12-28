@@ -76,3 +76,13 @@ module.exports.addLookupUser = (type) => {
     return this
   }
 }
+
+module.exports.getFile = async(fileID) => {
+  const value = await cloud.downloadFile({
+    fileID
+  })
+  console.debug(value)
+
+  const buffer = value.fileContent
+  return buffer.toString('utf8')
+}

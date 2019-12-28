@@ -55,10 +55,26 @@ async function getLatestArticles(isAdmin, page, pageSize) {
       user: true,
       author: true,
       createTime: true,
-      abstract: true
+      abstract: true,
+      abstractInFile: true
     })
     .end()
   console.debug(value)
 
-  return value.list
+  let articles = value.list
+  let ret = []
+  for (let article of articles) {
+    if (article.abstractInFile)
+      ret.push(common.getFile(article.abstract))
+  }
+  const value1 = await Promise.all(ret)
+
+  for (let article of articles) {
+    if (article.abstractInFile) {
+      article.abstract = value1.shift()
+      delete article.abstractInFile
+    }
+  }
+
+  return articles
 }

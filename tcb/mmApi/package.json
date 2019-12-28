@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "wx-server-sdk": "^1.6.0"
+    "wx-server-sdk": "^1.7.0"
   }
 }

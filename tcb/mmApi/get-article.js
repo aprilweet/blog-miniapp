@@ -35,6 +35,7 @@ async function getArticle(articleID) {
       articleID: '$_id',
       _id: false,
       body: true,
+      bodyInFile: true,
       classification: true,
       createTime: true,
       sourceLink: true,
@@ -49,7 +50,13 @@ async function getArticle(articleID) {
   if (value.list.length != 1)
     throw 'invalid list length: ' + value.list.length
 
-  return value.list[0]
+  let article = value.list[0]
+  if (article.bodyInFile) {
+    article.body = await common.getFile(article.body)
+    delete article.bodyInFile
+  }
+
+  return article
 }
 
 async function getSibling(articleID, isAdmin, type) {
