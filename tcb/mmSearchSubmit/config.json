@@ -1,0 +1,14 @@
+{
+  "triggers": [
+    {
+      "name": "EveryDay",
+      "type": "timer",
+      "config": "0 0 0 * * * *"
+    }
+  ],
+  "permissions": {
+    "openapi": [
+      "search.submitPages"
+    ]
+  }
+}
